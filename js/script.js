@@ -9,9 +9,9 @@ function DetenerAgregado () {
     
     if (Consulta.toLowerCase() === "no") {
         booleanNew = true;
+        alert("Hasta Luego.")
     } else if(Consulta.toLowerCase() === "si") {
         booleanNew = false;
-        alert("Hasta luego.");
     } else {
         booleanNew =  false;
     }
@@ -19,17 +19,9 @@ function DetenerAgregado () {
     return booleanNew
 }
 
-function filtrar(tipo, arreglo) {
-    
-    var ArrayCantidad = [];
-    var ArrayPrecios = [];
+function filtrarCantidad(tipo, arreglo) {
 
-    if (tipo.toLowerCase() == "precio" ) {
-        ArrayPrecios =  arreglo.map(elemento => elemento);
-        ArrayCantidad.sort(function(a,b){
-            return a.precio - b.precio;
-        })
-    }
+    var ArrayCantidad = [];
 
     if (tipo.toLowerCase()== "cantidad"){
         ArrayCantidad = arreglo.map(elemento => elemento);
@@ -38,8 +30,20 @@ function filtrar(tipo, arreglo) {
         })
     }
 
-    console.log(ArrayCantidad);
-    console.log(ArrayPrecios);
+    return ArrayCantidad;
+    
+}
+
+function filtrarPrecio(tipo, arreglo) {
+    var ArrayPrecios = [];
+
+    if (tipo.toLowerCase() == "precio" ) {
+        ArrayPrecios =  arreglo.map(elemento => elemento);
+        ArrayCantidad.sort(function(a,b){
+            return a.precio - b.precio;
+        })
+    }
+    return ArrayPrecios;
 }
 
 // Stockeo
@@ -150,6 +154,8 @@ while(Detener == false){
 
 console.log(ArrayProductos);
 
+///////
+
 let consulta = prompt("desea filtrar?");
 
 if (consulta.toLowerCase() == "si"){
@@ -160,9 +166,15 @@ if (consulta.toLowerCase() == "si"){
     Filtro = false;
 }
 
+if(Filtro == true){
+    let tipo = prompt("desea filtrar por precio o por cantidad?// precio - cantidad ");
 
+    if (tipo.toLowerCase() == "cantidad") {
+        console.log(filtrarCantidad("cantidad",ArrayProductos));
+    } else if(tipo.toLowerCase() == "precio") {
+        console.log(filtrarPrecio("precio",ArrayProductos));
+    }
 
-while(Filtro == true){
 
 }
 
