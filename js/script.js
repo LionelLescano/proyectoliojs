@@ -108,9 +108,9 @@ class Hoodies {
 //         SumarIntereses() {
 //             valorFinal = 0;
 
-//             if (this.cuotas == 6) {
+//             if (this.cuotas === 6) {
 //                 valorFinal = Math.round(this.precio * 1.2);
-//             } else if (this.cuotas == 9) {
+//             } else if (this.cuotas === 9) {
 //                 valorFinal = Math.round(this.precio * 1.4);
 //             } else {
 //                 valorFinal = this.precio;
