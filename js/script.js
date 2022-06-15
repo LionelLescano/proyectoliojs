@@ -20,7 +20,7 @@ function DetenerAgregado() {
 }
 
 function filtrarCantidad(tipo, arreglo) {
-
+    //va desde el menor valor hasta el mayor
     var ArrayCantidad = [];
 
     if (tipo.toLowerCase() == "cantidad") {
@@ -35,7 +35,7 @@ function filtrarCantidad(tipo, arreglo) {
 }
 
 function filtarCantidadDescendente(tipo, arreglo) {
-
+    //va desde el valor mas alto hasta el menor 
     var ArrayCantidad = [];
 
     if (tipo.toLowerCase() == "cantidad") {
@@ -49,11 +49,12 @@ function filtarCantidadDescendente(tipo, arreglo) {
 }
 
 function filtrarPrecio(tipo, arreglo) {
+    //va desde el menor valor hasta el mayor
     var ArrayPrecios = [];
 
     if (tipo.toLowerCase() == "precio") {
         ArrayPrecios = arreglo.map(elemento => elemento);
-        ArrayCantidad.sort(function (a, b) {
+        ArrayPrecios.sort(function (a, b) {
             return a.precio - b.precio;
         })
     }
@@ -62,15 +63,23 @@ function filtrarPrecio(tipo, arreglo) {
 
 
 function filtrarPrecioDescendente(tipo, arreglo) {
+    //va desde el valor mas alto hasta el menor 
     var ArrayPrecios = [];
 
     if (tipo.toLowerCase() == "precio") {
         ArrayPrecios = arreglo.map(elemento => elemento);
-        ArrayCantidad.sort(function (a, b) {
+        ArrayPrecios.sort(function (a, b) {
             return  b.precio - a.precio ;
         })
     }
     return ArrayPrecios;
+}
+
+function sumarPreciosTotal(arreglo) {
+
+    const ValorTotal=arreglo.reduce((acumulador, producto) => acumulador + producto.precio,0);
+
+    return ValorTotal;
 }
 
 
@@ -220,3 +229,14 @@ if (Filtro == true) {
         
     }
 }
+
+//--------------------------------------------------------------------------------
+
+let Suma = prompt("Desea sumar el valor total de los precios ?");
+
+if (Suma.toLowerCase() == "si") {
+    console.log(sumarPreciosTotal(ArrayProductos));
+} else if (Suma.toLowerCase() == "no") {
+    alert("Gracias, hasta pronto.")
+}
+
