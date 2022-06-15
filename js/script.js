@@ -1,19 +1,19 @@
-function imprimirMensaje(monto){
+function imprimirMensaje(monto) {
     return alert("su monto a pagar es" + monto);
 }
 
-function DetenerAgregado () {
-    
+function DetenerAgregado() {
+
     let booleanNew = false;
-    let Consulta = prompt("desea seguir agregando productos?") 
-    
+    let Consulta = prompt("desea seguir agregando productos?")
+
     if (Consulta.toLowerCase() === "no") {
         booleanNew = true;
         alert("Hasta Luego.")
-    } else if(Consulta.toLowerCase() === "si") {
+    } else if (Consulta.toLowerCase() === "si") {
         booleanNew = false;
     } else {
-        booleanNew =  false;
+        booleanNew = false;
     }
 
     return booleanNew
@@ -23,28 +23,56 @@ function filtrarCantidad(tipo, arreglo) {
 
     var ArrayCantidad = [];
 
-    if (tipo.toLowerCase()== "cantidad"){
+    if (tipo.toLowerCase() == "cantidad") {
         ArrayCantidad = arreglo.map(elemento => elemento);
-        ArrayCantidad.sort(function(a,b){
+        ArrayCantidad.sort(function (a, b) {
             return a.cantidad - b.cantidad;
         })
     }
 
     return ArrayCantidad;
-    
+
+}
+
+function filtarCantidadDescendente(tipo, arreglo) {
+
+    var ArrayCantidad = [];
+
+    if (tipo.toLowerCase() == "cantidad") {
+        ArrayCantidad = arreglo.map(elemento => elemento);
+        ArrayCantidad.sort(function (a, b) {
+            return b.cantidad - a.cantidad;
+        })
+    }
+
+    return ArrayCantidad;
 }
 
 function filtrarPrecio(tipo, arreglo) {
     var ArrayPrecios = [];
 
-    if (tipo.toLowerCase() == "precio" ) {
-        ArrayPrecios =  arreglo.map(elemento => elemento);
-        ArrayCantidad.sort(function(a,b){
+    if (tipo.toLowerCase() == "precio") {
+        ArrayPrecios = arreglo.map(elemento => elemento);
+        ArrayCantidad.sort(function (a, b) {
             return a.precio - b.precio;
         })
     }
     return ArrayPrecios;
 }
+
+
+function filtrarPrecioDescendente(tipo, arreglo) {
+    var ArrayPrecios = [];
+
+    if (tipo.toLowerCase() == "precio") {
+        ArrayPrecios = arreglo.map(elemento => elemento);
+        ArrayCantidad.sort(function (a, b) {
+            return  b.precio - a.precio ;
+        })
+    }
+    return ArrayPrecios;
+}
+
 
 // Stockeo
 
@@ -86,7 +114,7 @@ class Hoodies {
     }
 
     SinStock() {
-        if (this.cantidad == 0){
+        if (this.cantidad == 0) {
             return this.disponibilidad = false;
         } else {
             this.disponibilidad = true;
@@ -125,56 +153,70 @@ class Hoodies {
 //         Vender() {
 //             this.vendido = false;
 //         }
-    
+
 // }
 
 
 var ArrayProductos = [];
 
-let Detener = false; 
+let Detener = false;
 let Filtro = false;
 
-while(Detener == false){
-           
-    let modeloPro = prompt ("Ingrese el modelo del hoodie: ");
-    let tallePro  = prompt ("Ingrese el talle del hoodie: ");
-    let colorPro= prompt ("Ingrese el color del hoodie: ");
-    let cantidadPro = prompt ("Ingrese cantidad:");
-    let precioPro = prompt ("Ingrese precio:");
+while (Detener == false) {
 
-    ArrayProductos.push(new Hoodies(modeloPro.toLowerCase(),precioPro, tallePro.toLowerCase(), colorPro.toLowerCase(), cantidadPro));
+    let modeloPro = prompt("Ingrese el modelo del hoodie: ");
+    let tallePro = prompt("Ingrese el talle del hoodie: ");
+    let colorPro = prompt("Ingrese el color del hoodie: ");
+    let cantidadPro = prompt("Ingrese cantidad:");
+    let precioPro = prompt("Ingrese precio:");
 
-    if (DetenerAgregado() == true){
-        Detener =  true;
+    ArrayProductos.push(new Hoodies(modeloPro.toLowerCase(), precioPro, tallePro.toLowerCase(), colorPro.toLowerCase(), cantidadPro));
+
+    if (DetenerAgregado() == true) {
+        Detener = true;
     } else {
         Detener = false;
     }
-        
+
 }
 
 console.log(ArrayProductos);
 
-///////
+//--------------------------------------------------------------------------------
 
 let consulta = prompt("desea filtrar?");
 
-if (consulta.toLowerCase() == "si"){
+if (consulta.toLowerCase() == "si") {
     Filtro = true;
 } else if (consulta.toLowerCase() == "no") {
-    Filtro =  false;
+    Filtro = false;
 } else {
     Filtro = false;
 }
 
-if(Filtro == true){
+if (Filtro == true) {
+   
     let tipo = prompt("desea filtrar por precio o por cantidad?// precio - cantidad ");
+    let orden = prompt("en orden Ascendente o descendente?");
 
     if (tipo.toLowerCase() == "cantidad") {
-        console.log(filtrarCantidad("cantidad",ArrayProductos));
-    } else if(tipo.toLowerCase() == "precio") {
-        console.log(filtrarPrecio("precio",ArrayProductos));
+        if (orden.toLowerCase() == "ascendente") {
+            console.log(filtrarCantidad("cantidad", ArrayProductos));
+        } else if (orden.toLowerCase() == "descendente") {
+            console.log(filtarCantidadDescendente("cantidad", ArrayProductos));
+        } else {
+            Filtro = false;
+        }
     }
 
-
+    if (tipo.toLowerCase() == "precio") {
+        if  (orden.toLowerCase() == "ascendente"){
+            console.log(filtrarPrecio("precio", ArrayProductos));
+        } else if (orden.toLowerCase() == "descendente") {
+            console.log(filtrarPrecioDescendente("precio",ArrayProductos));
+        } else {
+            Filtro = false;
+        }
+        
+    }
 }
-
