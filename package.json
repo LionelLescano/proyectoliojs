@@ -1,0 +1,28 @@
+{
+  "name": "desafiojspagina",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-sass": "node-sass --include-path scss sass/index.scss css/main.css",
+    "watch-sass": "nodemon -e scss -x \"npm run build-sass\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LionelLescano/proyectoliojs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LionelLescano/proyectoliojs/issues"
+  },
+  "homepage": "https://github.com/LionelLescano/proyectoliojs#readme",
+  "devDependencies": {
+    "node": "^17.7.2",
+    "node-sass": "^7.0.1",
+    "nodemon": "^2.0.16",
+    "sass": "^1.52.3"
+  }
+}
