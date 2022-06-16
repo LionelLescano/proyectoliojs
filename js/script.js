@@ -69,7 +69,7 @@ function filtrarPrecioDescendente(tipo, arreglo) {
     if (tipo.toLowerCase() == "precio") {
         ArrayPrecios = arreglo.map(elemento => elemento);
         ArrayPrecios.sort(function (a, b) {
-            return  b.precio - a.precio ;
+            return b.precio - a.precio;
         })
     }
     return ArrayPrecios;
@@ -77,7 +77,7 @@ function filtrarPrecioDescendente(tipo, arreglo) {
 
 function sumarPreciosTotal(arreglo) {
 
-    const ValorTotal=arreglo.reduce((acumulador, producto) => acumulador + producto.precio,0);
+    const ValorTotal = arreglo.reduce((acumulador, producto) => acumulador + producto.precio, 0);
 
     return ValorTotal;
 }
@@ -98,6 +98,7 @@ class Hoodies {
     }
 
     SumarIntereses() {
+
         valorFinal = 0;
 
         if (this.cuotas == 6) {
@@ -195,48 +196,93 @@ console.log(ArrayProductos);
 
 let consulta = prompt("desea filtrar?");
 
-if (consulta.toLowerCase() == "si") {
-    Filtro = true;
-} else if (consulta.toLowerCase() == "no") {
-    Filtro = false;
-} else {
-    Filtro = false;
+switch (consulta.toLowerCase()) {
+    case "si":
+        Filtro = true;
+        break;
+    case "no":
+        Filtro = false;
+        break;
+    default:
+        alert("Opcion no válida.")
 }
 
 if (Filtro == true) {
-   
+
     let tipo = prompt("desea filtrar por precio o por cantidad?// precio - cantidad ");
     let orden = prompt("en orden Ascendente o descendente?");
 
-    if (tipo.toLowerCase() == "cantidad") {
-        if (orden.toLowerCase() == "ascendente") {
-            console.log(filtrarCantidad("cantidad", ArrayProductos));
-        } else if (orden.toLowerCase() == "descendente") {
-            console.log(filtarCantidadDescendente("cantidad", ArrayProductos));
-        } else {
-            Filtro = false;
-        }
+    switch (tipo.toLowerCase()) {
+        case "cantidad":
+            if (orden.toLowerCase() == "ascendente") {
+                console.log(filtrarPrecio("cantidad", ArrayProductos));
+            } else if (orden.toLowerCase() == "descendente") {
+                console.log(filtarCantidadDescendente("cantidad", ArrayProductos));
+            } else {
+                Filtro = false;
+            }
+            break;
+
+        case "precio":
+            if (orden.toLowerCase() == "ascendente") {
+                console.log(filtrarPrecio("precio", ArrayProductos));
+            } else if (orden.toLowerCase() == "descendente") {
+                console.log(filtrarPrecioDescendente("precio", ArrayProductos));
+            } else {
+                Filtro = false;
+            }
+            break;
+
+        default:
+            alert("opcion no valida.");
+            break;
     }
 
-    if (tipo.toLowerCase() == "precio") {
-        if  (orden.toLowerCase() == "ascendente"){
-            console.log(filtrarPrecio("precio", ArrayProductos));
-        } else if (orden.toLowerCase() == "descendente") {
-            console.log(filtrarPrecioDescendente("precio",ArrayProductos));
-        } else {
-            Filtro = false;
-        }
-        
-    }
+
 }
 
 //--------------------------------------------------------------------------------
 
 let Suma = prompt("Desea sumar el valor total de los precios ?");
 
-if (Suma.toLowerCase() == "si") {
-    console.log(sumarPreciosTotal(ArrayProductos));
-} else if (Suma.toLowerCase() == "no") {
-    alert("Gracias, hasta pronto.")
+switch (Suma.toLowerCase()) {
+    case "si":
+        console.log(sumarPreciosTotal(ArrayProductos));
+        break;
+    case "no":
+        alert("Gracias, hasta pronto.");
+        break;
+    default:
+        alert("opcion no valida.");
+        break;
+
+
 }
 
+// if (Suma.toLowerCase() == "si") {
+//     console.log(sumarPreciosTotal(ArrayProductos));
+// } else if (Suma.toLowerCase() == "no") {
+//     alert("Gracias, hasta pronto.")
+// }
+
+
+
+//   // if (tipo.toLowerCase() == "cantidad") {
+//     if (orden.toLowerCase() == "ascendente") {
+//         console.log(filtrarPrecio("cantidad", ArrayProductos));
+//     } else if (orden.toLowerCase() == "descendente") {
+//         console.log(filtarCantidadDescendente("cantidad", ArrayProductos));
+//     } else {
+//         Filtro = false;
+//     }
+//     // }
+
+//     if (tipo.toLowerCase() == "precio") {
+//         if (orden.toLowerCase() == "ascendente") {
+//             console.log(filtrarPrecio("precio", ArrayProductos));
+//         } else if (orden.toLowerCase() == "descendente") {
+//             console.log(filtrarPrecioDescendente("precio", ArrayProductos));
+//         } else {
+//             Filtro = false;
+//         }
+//         // }
