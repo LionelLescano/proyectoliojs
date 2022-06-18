@@ -212,35 +212,25 @@ if (Filtro == true) {
     let tipo = prompt("desea filtrar por precio o por cantidad?// precio - cantidad ");
     let orden = prompt("en orden Ascendente o descendente?");
 
-    switch (tipo.toLowerCase()) {
-        case "cantidad":
-            if (orden.toLowerCase() == "ascendente") {
-                console.log(filtrarPrecio("cantidad", ArrayProductos));
-            } else if (orden.toLowerCase() == "descendente") {
-                console.log(filtarCantidadDescendente("cantidad", ArrayProductos));
-            } else {
-                Filtro = false;
-            }
-            break;
-
-        case "precio":
-            if (orden.toLowerCase() == "ascendente") {
-                console.log(filtrarPrecio("precio", ArrayProductos));
-            } else if (orden.toLowerCase() == "descendente") {
-                console.log(filtrarPrecioDescendente("precio", ArrayProductos));
-            } else {
-                Filtro = false;
-            }
-            break;
-
-        default:
-            alert("opcion no valida.");
-            break;
+    if (tipo.toLowerCase() === "cantidad") {
+        if (orden.toLowerCase() === "ascendente") {
+            console.log(filtrarCantidad("cantidad", ArrayProductos));
+        } else if (orden.toLowerCase() === "descendente") {
+            console.log(filtarCantidadDescendente("cantidad", ArrayProductos));
+        } else {
+            Filtro = false;
+        }
     }
-
-
+    if (tipo.toLowerCase() === "precio") {
+        if (orden.toLowerCase() === "ascendente") {
+            console.log(filtrarPrecio("precio", ArrayProductos));
+        } else if (orden.toLowerCase() === "descendente") {
+            console.log(filtrarPrecioDescendente("precio", ArrayProductos));
+        } else {
+            Filtro = false;
+        }
+    }
 }
-
 //--------------------------------------------------------------------------------
 
 let Suma = prompt("Desea sumar el valor total de los precios ?");
@@ -255,9 +245,36 @@ switch (Suma.toLowerCase()) {
     default:
         alert("opcion no valida.");
         break;
-
-
 }
+
+Filtro = false;
+
+let pregunta = prompt("desea filtrar de nuevo ?");
+
+switch (pregunta.toLowerCase) {
+    case "si":
+        Filtro = true;
+        break;
+    case "no":
+        alert("hasta luego.");
+        break;
+
+    default:
+        alert("opcion no valida");
+        break;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 // if (Suma.toLowerCase() == "si") {
 //     console.log(sumarPreciosTotal(ArrayProductos));
@@ -286,3 +303,69 @@ switch (Suma.toLowerCase()) {
 //             Filtro = false;
 //         }
 //         // }
+
+
+
+// if (orden.toLowerCase() == "ascendente") {
+//     console.log(filtrarPrecio("cantidad", ArrayProductos));
+//     break;
+// } else if (orden.toLowerCase() == "descendente") {
+//     console.log(filtarCantidadDescendente("cantidad", ArrayProductos));
+//     break;
+// } else {
+//     Filtro = false;
+//     break;
+// }
+// break;
+
+
+// if (orden.toLowerCase() == "ascendente") {
+//     console.log(filtrarPrecio("precio", ArrayProductos));
+//     break;
+// } else if (orden.toLowerCase() == "descendente") {
+//     console.log(filtrarPrecioDescendente("precio", ArrayProductos));
+//     break;
+// } else {
+//     Filtro = false;
+//     break;
+// }
+// break;
+
+
+
+
+
+
+
+// switch (tipo.toLowerCase()) {
+//     case "cantidad":
+//         switch (orden.toLowerCase()) {
+//             case "ascendente":
+//                 console.log(filtrarCantidad("cantidad", ArrayProductos));
+//                 break;
+//             case "descendente":
+//                 console.log(filtarCantidadDescendente("cantidad", ArrayProductos));
+//                 break;
+//             default:
+//                 Filtro = false;
+//                 break;
+//         }
+//         break;
+
+//     case "precio":
+//         switch (orden.toLocaleUpperCase()) {
+//             case "ascendente":
+//                 console.log(filtrarPrecio("precio", ArrayProductos));
+//                 break;
+//             case "descendente":
+//                 console.log(filtrarPrecioDescendente("precio", ArrayProductos));
+//                 break;
+//             default:
+//                 Filtro = false;
+//                 break;
+//         }
+//         break;
+//     default:
+//         alert("opcion no valida.");
+//         break;
+// }
