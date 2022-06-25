@@ -1,29 +1,3 @@
-const titulos = document.getElementById("titulo");
-
-const tienda = document.getElementById("contenedorTienda");
-
-console.log(tienda.innerHTML);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function imprimirMensaje(monto) {
     return alert("su monto a pagar es" + monto);
 }
@@ -109,61 +83,26 @@ function sumarPreciosTotal(arreglo) {
 }
 
 
-// Stockeo
 
 class Hoodie {
-    constructor(modelo, precio, talle, imagen) {
+    constructor(id, modelo, precio, talle, imagen) {
+        this.id = id;
         this.modelo = modelo;
         this.precio = Math.round(precio);
         this.talle = talle;
         this.imagen = imagen;
-        this.vendido = true;
-        this.disponibilidad = true;
-        this.interes = _Math.round(precio/3);
-
     }
-    SumarIntereses() {
-
-        valorFinal = 0;
-
-        if (this.cuotas == 6) {
-            valorFinal = Math.round(this.precio * 1.2);
-        } else if (this.cuotas == 9) {
-            valorFinal = Math.round(this.precio * 1.4);
-        } else {
-            valorFinal = this.precio;
-        }
-        return valorFinal;
-    }
-
-    Iva() {
-        return this.precio * 1.21;
-    }
-
-    Vender() {
-        this.vendido = false;
-    }
-
-    reciboCompra() {
-        return "Su compra es de un Hoodie color " + this.color.toUpperCase();
-    }
-
-    SinStock() {
-        if (this.cantidad == 0) {
-            return this.disponibilidad = false;
-        } else {
-            this.disponibilidad = true;
-        }
-    }
-
+     
 }
 
-const Hoodie1 = new Hoodie ( "HOODIE ROSA", 15000 , "XL", "./assets/img/horror-hoodie-25-rosa.png" )
-const Hoodie2 = new Hoodie ( "HOODIE 13 BLACK", 10000 , "L","./assets/img/hoodie-13-black.png"   )
-const Hoodie3 = new Hoodie ( "HOODIE DESIGNING", 11000 , "XL", "./assets/img/hoodie-designing.png"  )
-const Hoodie4 = new Hoodie ( "HOODIE NASTY", 12000 , "M", "./assets/img/hoodie-nasty-black.png" )
-const Hoodie5 = new Hoodie ( "HOODIE", 10500 , "L", "./assets/img/hoodie-yellowstyle.webp" )
-const Hoodie6 = new Hoodie ( "HOODIE", 12400 , "XL", "./assets/img/hoodie-verde.jpg" )
+
+
+const Hoodie1 = new Hoodie(1, "HOODIE ROSA", 15000, "XL", "./assets/img/horror-hoodie-25-rosa.png")
+const Hoodie2 = new Hoodie(2, "HOODIE 13 BLACK", 10000, "L", "./assets/img/hoodie-13-black.png")
+const Hoodie3 = new Hoodie(3, "HOODIE DESIGNING", 11000, "XL", "./assets/img/hoodie-designing.png")
+const Hoodie4 = new Hoodie(4, "HOODIE NASTY", 12000, "M", "./assets/img/hoodie-nasty-black.png")
+const Hoodie5 = new Hoodie(5, "HOODIE YELLOWSTYLE", 10500, "L", "./assets/img/hoodie-yellowstyle.webp")
+const Hoodie6 = new Hoodie(6, "HOODIE GREENLIFE", 12400, "XL", "./assets/img/hoodie-verde.jpg")
 
 var ArrayProductos = [];
 var ArrayCarrito = [];
@@ -176,9 +115,73 @@ ArrayProductos.push(Hoodie5);
 ArrayProductos.push(Hoodie6);
 
 
-function mostrar (arreglo){
+function mostrarProductos(productos) {
 
+    const contenedorProductos = document.getElementById("contenedor-de-Hoodies");
+    contenedorProductos.innerHTML = "";
+    productos.forEach(producto => {
+        const divProducto = document.createElement("div");
+        divProducto.id = producto.id;
+        divProducto.classList.add("card");
+        divProducto.innerHTML = `
+            <img class="card-img-top" src="${producto.imagen}" alt="${producto.modelo}">
+            <h3 class="card-title">${producto.modelo}</h3>
+            <h4 class="card-title">Precio: $ ${producto.precio}</h4>
+            <h5 class ="card-title"> Hasta 3 cuotas sin interes de $${Math.round(producto.precio/3)}</h5> 
+            <button id=${producto.id} type="button" class=".boton-comprar btn btn-outline-primary btn-lg"> Agregar al Carrito </button>
+          `;
+
+        //------------------------------------------------------------//
+
+        //  const AgregarComprado = document.querySelectorAll('.boton-comprar');
+        // AgregarComprado.forEach((AgregarCarritoCompra) => {
+        //     AgregarCarritoCompra.addEventListener('click',() => console.log('click'))
+        // })
+
+        //------------------------------------------------------------//
+
+        const botonVerCarrito = document.getElementById("btnCarrito");
+        botonVerCarrito.addEventListener("click", () => {
+            mostrarProductos(ArrayCarrito);
+            CrearBotonVolver();
+        })
+        contenedorProductos.appendChild(divProducto);
+    })
 }
+
+function CrearBotonVolver() {
+    const botonVolver = document.createElement("button");
+    botonVolver.classList.add("boton-volver");
+    botonVolver.innerText = "Atras";
+    botonVolver.addEventListener("click", () => {
+        mostrarProductos(ArrayProductos);
+    })
+    document.getElementById("contenedor-de-Hoodies").prepend(botonVolver);
+}
+
+mostrarProductos(ArrayProductos);
+
+
+
+
+
+
+
+
+
+
+//----------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
 
 // let Detener = false;
 // let Filtro = false;

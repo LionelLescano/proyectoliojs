@@ -1,0 +1,11 @@
+main{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .card {
+        padding: 3em;
+        text-align: center;
+
+    }
+}
