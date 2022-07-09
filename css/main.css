@@ -32,10 +32,6 @@ body {
   display: flex;
   flex-direction: column; }
 
-.container {
-  max-width: 1080px;
-  margin: 0 auto; }
-
 /*PARTIALS*/
 header {
   background-color: black;
@@ -44,6 +40,12 @@ header {
     display: flex;
     justify-content: space-between;
     font-size: 12rem; }
+  header p {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column; }
+  header .carritoDiv {
+    text-align: center; }
 
 footer {
   background-color: black;

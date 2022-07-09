@@ -1,12 +1,24 @@
 header {
     background-color: black;
     color: white;
+   
 
     navbar {
         display: flex;
         justify-content: space-between;
         font-size: 12rem;
+        
     }
 
+    p {
+        font-size: 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .carritoDiv{
+        text-align: center;
+    }
+    
 
 }
