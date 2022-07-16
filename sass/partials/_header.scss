@@ -1,13 +1,22 @@
 header {
     background-color: black;
     color: white;
-   
 
-    navbar {
+
+    #contenedorTienda {
+        text-align: center;
+    }
+
+    .navbar {
         display: flex;
         justify-content: space-between;
-        font-size: 12rem;
-        
+        font-size: 2.1rem;
+
+    }
+
+
+    .carritoDiv {
+        text-align: center;
     }
 
     p {
@@ -16,9 +25,5 @@ header {
         flex-direction: column;
     }
 
-    .carritoDiv{
-        text-align: center;
-    }
-    
 
 }

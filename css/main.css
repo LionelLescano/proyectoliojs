@@ -19,8 +19,7 @@ ol {
 
 a {
   text-decoration: none;
-  color: white;
-  display: inline-block; }
+  color: white; }
 
 img {
   display: block; }
@@ -32,30 +31,38 @@ body {
   display: flex;
   flex-direction: column; }
 
+.container {
+  max-width: 90%;
+  margin: 0 auto; }
+
 /*PARTIALS*/
 header {
   background-color: black;
   color: white; }
-  header navbar {
+  header #contenedorTienda {
+    text-align: center; }
+  header .navbar {
     display: flex;
     justify-content: space-between;
-    font-size: 12rem; }
+    font-size: 2.1rem; }
+  header .carritoDiv {
+    text-align: center; }
   header p {
     font-size: 2rem;
     display: flex;
     flex-direction: column; }
-  header .carritoDiv {
-    text-align: center; }
 
 footer {
   background-color: black;
   color: white; }
 
 /*VIEWS*/
-main {
+main .cards {
+  align-items: center;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between; }
-  main .card {
-    padding: 3em;
-    text-align: center; }
+  flex-direction: column; }
+  main .cards .card {
+    border-color: black;
+    border-style: solid;
+    max-width: 30%;
+    padding: 2rem; }

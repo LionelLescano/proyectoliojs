@@ -1,11 +1,25 @@
-main{
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
+main {
 
-    .card {
-        padding: 3em;
-        text-align: center;
+    
+    .cards {
+      
+        align-items: center;
+        display: flex;
+        flex-direction: column;
 
+        .card {
+            border-color: black;
+            border-style: solid;
+            max-width: 30%;
+            padding: 2rem;
+        }
+    
+
+        
+       
     }
+
+
+
+
 }

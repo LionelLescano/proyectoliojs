@@ -28,28 +28,34 @@ CarritoLS && ArrayCarrito.push(CarritoLS);
 
 
 
-function mostrarProductos(productos) {
+function mostrarProductos(arreglo) {
 
     const contenedorProductos = document.getElementById("contenedor-de-Hoodies");
     contenedorProductos.innerHTML = "";
-    productos.forEach(producto => {
+    arreglo.forEach(({
+        imagen,
+        modelo,
+        precio,
+        id
+    }) => {
         const divProducto = document.createElement("div");
         divProducto.classList.add("card");
         divProducto.innerHTML = `
-            <img class="card-img-top" src="${producto.imagen}" alt="${producto.modelo}">
-            <h3 class="card-title">${producto.modelo}</h3>
-            <h4 class="card-title">Precio: $ ${producto.precio}</h4>
-            <h5 class ="card-title"> Hasta 3 cuotas sin interes de $${Math.round(producto.precio/3)}</h5> 
-            <button id="add${producto.id}" type="button" class=".boton-agregar btn btn-outline-primary btn-lg"> Agregar al Carrito </button>
+            <img class="card-img-top" src="${imagen}" alt="${modelo}">
+            <h3 class="card-title">${modelo}</h3>
+            <h4 class="card-title">Precio: $ ${precio}</h4>
+            <h5 class ="card-title"> Hasta 3 cuotas sin interes de $${Math.round(precio/3)}</h5> 
+            <button id="add${id}" type="button" class=".boton-agregar btn btn-outline-primary btn-lg"> Agregar al Carrito </button>
             <button id="eliminarStorage" type= "button" class =".botonLimpiar btn btn-outline-primary btn-lg"> Limpiar Carrito </button>
           `
 
         contenedorProductos.appendChild(divProducto);
 
 
-        const boton = document.getElementById(`add${producto.id}`)
+        const boton = document.getElementById(`add${id}`)
         boton.addEventListener("click", () => {
-            agregarCarrito(producto.id);
+            agregarCarrito(id);
+            alertaTiempo();
 
         })
 
@@ -61,14 +67,11 @@ function mostrarProductos(productos) {
 
         const botonLimpiarStorage = document.getElementById('eliminarStorage');
         botonLimpiarStorage.addEventListener("click", () => {
-            localStorage.clear();
+            consultarLocal();
         })
-
-
-
-
     })
 }
+
 // funcion para volver a la pagina principal con todos los productos.
 
 function CrearBotonVolver() {
@@ -91,17 +94,61 @@ const agregarCarrito = (prodID) => {
 
 }
 
+const alerta = (titleText, text, icon, confirmButtontext) => {
+    Swal.fire({
 
-// funcion para mostrar el valor total del carrito
+        title: titleText,
+        text: text,
+        icon: icon,
+        confirmButtontext: confirmButtontext,
+    })
+}
 
-// let ItemJSON = JSON.stringify(items);
+const alertaTiempo = () => {
+    Swal.fire({
 
-// localStorage.setItem('item',ItemJSON);
+        position: 'top-end',
+        icon: 'success',
+        title: 'Agregaste al Carrito',
+        showConfirmButton: false,
+        timer: 1000,
+    })
+
+}
+
+const consultarLocal = () => {
+    Swal.fire({
+        title: 'Deseas Eliminar LocalStorage?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Borrar',
+        cancelButtonText: 'Cancelar',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.clear();
+            Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+            )
+            
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            Swal.fire(
+                'Cancelled',
+                'Your imaginary file is safe :)',
+                'error'
+            )
+        }
+    })
+    
+}
 
 
-// let ItemJSON = JSON.stringify();
-
-// localStorage.setItem('item',ItemJSON);
 
 
 
@@ -112,124 +159,5 @@ mostrarProductos(Productos);
 
 
 
+
 //----------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-// let Detener = false;
-// let Filtro = false;
-
-// while (Detener == false) {
-
-//     let modeloPro = prompt("Ingrese el modelo del hoodie: ");
-//     let tallePro = prompt("Ingrese el talle del hoodie: ");
-//     let colorPro = prompt("Ingrese el color del hoodie: ");
-//     let cantidadPro = prompt("Ingrese cantidad:");
-//     let precioPro = prompt("Ingrese precio:");
-
-//     ArrayProductos.push(new Hoodies(modeloPro.toLowerCase(), precioPro, tallePro.toLowerCase(), colorPro.toLowerCase(), cantidadPro));
-
-//     if (DetenerAgregado() == true) {
-//         Detener = true;
-//     } else {
-//         Detener = false;
-//     }
-
-// }
-
-// console.log(ArrayProductos);
-
-// //--------------------------------------------------------------------------------
-
-// let consulta = prompt("desea filtrar?");
-
-// switch (consulta.toLowerCase()) {
-//     case "si":
-//         Filtro = true;
-//         break;
-//     case "no":
-//         Filtro = false;
-//         break;
-//     default:
-//         alert("Opcion no válida.")
-// }
-
-// if (Filtro == true) {
-
-//     let tipo = prompt("desea filtrar por precio o por cantidad?// precio - cantidad ");
-//     let orden = prompt("en orden Ascendente o descendente?");
-
-//     switch (tipo.toLowerCase()) {
-//         case "cantidad":
-//             switch (orden.toLowerCase()) {
-//                 case "ascendente":
-//                     console.log(filtrarCantidad("cantidad", ArrayProductos));
-//                     break;
-//                 case "descendente":
-//                     console.log(filtarCantidadDescendente("cantidad", ArrayProductos));
-//                     break;
-//                 default:
-//                     Filtro = false;
-//                     break;
-//             }
-//             break;
-
-//         case "precio":
-//             switch (orden.toLocaleUpperCase()) {
-//                 case "ascendente":
-//                     console.log(filtrarPrecio("precio", ArrayProductos));
-//                     break;
-//                 case "descendente":
-//                     console.log(filtrarPrecioDescendente("precio", ArrayProductos));
-//                     break;
-//                 default:
-//                     Filtro = false;
-//                     break;
-//             }
-//             break;
-//         default:
-//             alert("opcion no valida.");
-//             break;
-//     }
-// }
-// //--------------------------------------------------------------------------------
-
-// let Suma = prompt("Desea sumar el valor total de los precios ?");
-
-// switch (Suma.toLowerCase()) {
-//     case "si":
-//         console.log(sumarPreciosTotal(ArrayProductos));
-//         break;
-//     case "no":
-//         alert("Gracias, hasta pronto.");
-//         break;
-//     default:
-//         alert("opcion no valida.");
-//         break;
-// }
-
-// Filtro = false;
-
-// let pregunta = prompt("desea filtrar de nuevo ?");
-
-// switch (pregunta.toLowerCase) {
-//     case "si":
-//         Filtro = true;
-//         break;
-//     case "no":
-//         alert("hasta luego.");
-//         break;
-
-//     default:
-//         alert("opcion no valida");
-//         break;
-// }
