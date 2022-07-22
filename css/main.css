@@ -22,7 +22,7 @@ a {
   color: white; }
 
 img {
-  display: block; }
+  width: 100%; }
 
 body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; }
@@ -32,25 +32,36 @@ body {
   flex-direction: column; }
 
 .container {
-  max-width: 90%;
+  max-width: 1200px;
   margin: 0 auto; }
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly; }
 
 /*PARTIALS*/
 header {
   background-color: black;
-  color: white; }
+  color: white;
+  gap: 2rem; }
   header #contenedorTienda {
     text-align: center; }
-  header .navbar {
-    display: flex;
-    justify-content: space-between;
-    font-size: 2.1rem; }
   header .carritoDiv {
     text-align: center; }
-  header p {
-    font-size: 2rem;
-    display: flex;
-    flex-direction: column; }
+  header .link {
+    font-size: 2em;
+    transition: ease-in-out 0.5s; }
+  header .link:hover {
+    color: red; }
+  header .selector {
+    transition: ease-in-out 0.5s; }
+  header #btnCarrito {
+    padding: 0.9rem;
+    margin-top: 1rem; }
+  header .texto__envio {
+    font-size: 1.5em;
+    padding: 1.3rem; }
 
 footer {
   background-color: black;

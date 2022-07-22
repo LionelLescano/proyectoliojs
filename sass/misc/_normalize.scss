@@ -6,34 +6,38 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
- }
+}
 
- /* globals*/
+/* globals*/
 
 html {
-    font-size: 62.5%;
-  }
-  
-  ul {
-    list-style-type: none;
-  }
-  
-  ol {
-    list-style-type: none;
-  }
-  
-  a {
-    text-decoration: none;
-    color: white;
-   }
-  
-  img {
-    display: block;
-    
-  
-  }
+  font-size: 62.5%;
+}
 
-  body {
-    
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  }
+ul {
+  list-style-type: none;
+}
+
+ol {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+
+
+
+img {
+  width: 100%;
+
+}
+
+
+
+body {
+
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

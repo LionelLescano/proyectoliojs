@@ -1,0 +1,8 @@
+[
+    {"id" : 1, "name" : "HOODIE ROSA", "price" : 15000, "talle" : "XL", "image" : "./assets/img/horror-hoodie-25-rosa.png" },
+    {"id" : 2, "name" : "HOODIE 13 BLACK", "price" : 10000, "talle" : "L", "image" : "./assets/img/hoodie-13-black.png" },
+    {"id" : 3, "name" : "HOODIE DESIGNING", "price" : 10000, "talle" : "L", "image" : "./assets/img/hoodie-13-black.png" }, 
+    {"id" : 4, "name" : "HOODIE NASTY", "price" : 10000, "talle" : "L", "image" : "./assets/img/hoodie-13-black.png" },
+    {"id" : 5, "name" : "HOODIE YELLOWSTYLE", "price" : 10000, "talle" : "L", "image" : "./assets/img/hoodie-13-black.png" },
+    {"id" : 6, "name" : "HOODIE GREENLIFE", "price" : 10000, "talle" : "L", "image" : "./assets/img/hoodie-13-black.png" }
+]
