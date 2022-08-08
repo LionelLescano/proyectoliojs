@@ -1,25 +1,20 @@
 main {
-
-    
-    .cards {
-      
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-
-        .card {
-            border-color: black;
-            border-style: solid;
-            max-width: 30%;
-            padding: 2rem;
-        }
-    
-
-        
-       
+    img {
+        width: 250px;
     }
 
+    .contenedor {
+         
+
+        .display{
 
 
+            .card {
+                padding: map-get($paddings, xlarge );
+            }
+        }
+    }
 
+    
+    
 }

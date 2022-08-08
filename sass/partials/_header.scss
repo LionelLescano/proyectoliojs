@@ -2,6 +2,18 @@ header {
     background-color: black;
     color: white;
     gap: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    .titulo {
+        padding: map-get($paddings, large );
+        &__pagina {
+            a{
+                color: white;
+            }
+        }
+    }
 
     #contenedorTienda {
         text-align: center;

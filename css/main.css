@@ -19,7 +19,7 @@ ol {
 
 a {
   text-decoration: none;
-  color: white; }
+  color: black; }
 
 img {
   width: 100%; }
@@ -44,7 +44,14 @@ body {
 header {
   background-color: black;
   color: white;
-  gap: 2rem; }
+  gap: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; }
+  header .titulo {
+    padding: 1.3rem; }
+    header .titulo__pagina a {
+      color: white; }
   header #contenedorTienda {
     text-align: center; }
   header .carritoDiv {
@@ -68,12 +75,8 @@ footer {
   color: white; }
 
 /*VIEWS*/
-main .cards {
-  align-items: center;
-  display: flex;
-  flex-direction: column; }
-  main .cards .card {
-    border-color: black;
-    border-style: solid;
-    max-width: 30%;
-    padding: 2rem; }
+main img {
+  width: 250px; }
+
+main .contenedor .display .card {
+  padding: 1.5rem; }

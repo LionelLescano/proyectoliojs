@@ -1,25 +1,23 @@
 @mixin flex($direction: row, $justify: flex-start, $align: flex-start, $gap : 0, $wrap: no-wrap) {
-    display: flex;
-    flex-direction: $direction;
-    justify-content: $justify;
-    align-items: $align;
-    gap: $gap;
-  }
-    
-  .flex-column {
-      display: flex;
-      flex-direction: column;
-    }
-    
-  .container {
-       max-width: 1200px;
-       margin: 0 auto;
-     }
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
 
-  .flex {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-  }
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
 
-  
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
