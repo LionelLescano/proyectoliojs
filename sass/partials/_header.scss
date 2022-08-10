@@ -5,6 +5,8 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    text-align: center;
+    position: static;
 
     .titulo {
         padding: map-get($paddings, large );
@@ -48,7 +50,35 @@ header {
         font-size: map-get($font-size, xlarge );
         padding: map-get($paddings, large );
     }
+    .contenedor-Car {
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-align: center;
+        
 
+        #numero-carrito {
+            font-size: 2em;
+        }
+    
+        #texto-carrito{
+            font-size: 2em;
+        }
+
+
+    
+    }
+
+    .cartelPrecioTotal{
+        display: flex;
+        flex-direction: column;
+        justify-content:space-around;
+        font-size: 2em;
+        text-align: center;
+    }
+
+   
     
 
 

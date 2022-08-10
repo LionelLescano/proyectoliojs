@@ -16,16 +16,30 @@ const Hoodie4 = new Hoodie(4, "HOODIE NASTY", 12000, "M", "./assets/img/hoodie-n
 const Hoodie5 = new Hoodie(5, "HOODIE YELLOWSTYLE", 10500, "L", "./assets/img/hoodie-yellowstyle.webp")
 const Hoodie6 = new Hoodie(6, "HOODIE GREENLIFE", 12400, "XL", "./assets/img/hoodie-verde.jpg")
 
-var Productos = [Hoodie1, Hoodie2, Hoodie3, Hoodie4, Hoodie5, Hoodie6];
 
+var Productos = [Hoodie1, Hoodie2, Hoodie3, Hoodie4, Hoodie5, Hoodie6];
 
 var ArrayCarrito = [];
 
+const precioTotal = document.getElementById('precioTotal');
 
 
-// const CarritoLS = JSON.parse(localStorage.getItem('carrito'))
 
-// CarritoLS && ArrayCarrito.push(CarritoLS);
+document.addEventListener('DOMContentLoaded', () => {
+    if(localStorage.getItem('ArrayCarrito')) {
+        ArrayCarrito = JSON.parse(localStorage.getItem('ArrayCarrito'))
+        Actualizar()
+
+    }
+})
+
+
+const Actualizar = () => {
+    const textoCarrito = document.getElementById('numero-carrito');
+    textoCarrito.innerText = ArrayCarrito.length;
+    precioTotal.innerText=  `${ArrayCarrito.reduce((acc,prod) => acc + prod.precio,0)} $`
+   
+}
 
 function mostrarProductos(arreglo) {
 
@@ -44,8 +58,8 @@ function mostrarProductos(arreglo) {
              <h3 class="card-title">${modelo}</h3>
              <h4 class="card-title">Precio: $ ${precio}</h4>
              <h5 class ="card-title"> Hasta 3 cuotas sin interes de $${Math.round(precio/3)}</h5> 
-             <button id="add${id}" type="button" class=".boton-agregar btn btn-outline-primary btn-lg"> Agregar al Carrito </button>
-             <button id="eliminarStorage" type= "button" class =".botonLimpiar btn btn-outline-primary btn-lg"> Limpiar Carrito </button>
+             <button id="add${id}" type="button" class="boton-agregar btn btn-outline-primary btn-lg"> Agregar al Carrito </button>
+             <button id="eliminarCarrito" type= "button" class =".botonLimpiar btn btn-outline-primary btn-lg"> Limpiar Carrito </button>
            `
 
         contenedorProductos.appendChild(divProducto);
@@ -53,45 +67,37 @@ function mostrarProductos(arreglo) {
 
         const boton = document.getElementById(`add${id}`)
         boton.addEventListener("click", () => {
+            localStorage.setItem('ArrayCarrito',JSON.stringify(ArrayCarrito))
             agregarCarrito(id);
+            Actualizar(); 
             alertaTiempo();
-            
-
         })
 
         const botonVerCarrito = document.getElementById("btnCarrito");
         botonVerCarrito.addEventListener("click", () => {
             mostrarProductos(ArrayCarrito);
             CrearBotonVolver();
+            document.getElementById(`add${id}`).style.display="block"
         })
 
-        const botonLimpiarStorage = document.getElementById('eliminarStorage');
-        botonLimpiarStorage.addEventListener("click", () => {
-            consultarLocal();
+        const botonLimpiarCarrito = document.getElementById('eliminarCarrito');
+        botonLimpiarCarrito.addEventListener("click", () => {
+            consultarCarrito();
         })
     })
 }
 
-// function CrearBotonVolver() {
-//     const botonVolver = document.createElement("button");
-//     botonVolver.classList.add("boton-volver");
-//     botonVolver.innerText = "Atras";
-//     botonVolver.addEventListener("click", () => {
-//         mostrarProductos(Productos);
-//     })
-//     document.getElementById("contenedor-de-Hoodies").prepend(botonVolver);
-// }
 
-const CrearBotonVolver = () => { 
+const CrearBotonVolver = () => {
     const botonVolver = document.createElement('button');
     botonVolver.classList.add('boton-volver');
-    botonVolver.innerText='atras';
+    botonVolver.innerText = 'atras';
     botonVolver.addEventListener('click', () => {
         mostrarProductos(Productos);
     })
 
     document.getElementById('contenedor-de-Hoodies').prepend(botonVolver);
- }
+}
 
 
 const agregarCarrito = (prodID) => {
@@ -105,14 +111,19 @@ const alertaTiempo = () => {
         icon: 'success',
         title: 'Agregaste al Carrito',
         showConfirmButton: false,
-        timer: 1000,
+        timer: 500,
     })
 
 }
 
-const consultarLocal = () => {
+
+const eliminarCarrito = (arreglo) => {
+    return arreglo.length = 0;
+}
+
+const consultarCarrito = () => {
     Swal.fire({
-        title: 'Deseas Eliminar LocalStorage?',
+        title: 'Deseas eliminar su carrito?',
         text: "No podras revertir esta acción!",
         icon: 'warning',
         showCancelButton: true,
@@ -121,10 +132,14 @@ const consultarLocal = () => {
         reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
+            eliminarCarrito(ArrayCarrito);
+            Actualizar();
+            mostrarProductos(ArrayCarrito);
+            CrearBotonVolver();
             localStorage.clear();
             Swal.fire(
                 'Eliminado!',
-                'Eliminaste LocalStorage! ',
+                'Eliminaste Carrito! ',
                 'success'
             )
 
@@ -140,7 +155,11 @@ const consultarLocal = () => {
     })
 
 }
+
+
 mostrarProductos(Productos);
+
+
 
 
 

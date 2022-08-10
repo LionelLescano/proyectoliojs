@@ -47,7 +47,9 @@ header {
   gap: 2rem;
   display: flex;
   flex-direction: row;
-  justify-content: space-around; }
+  justify-content: space-around;
+  text-align: center;
+  position: static; }
   header .titulo {
     padding: 1.3rem; }
     header .titulo__pagina a {
@@ -69,6 +71,21 @@ header {
   header .texto__envio {
     font-size: 1.5em;
     padding: 1.3rem; }
+  header .contenedor-Car {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center; }
+    header .contenedor-Car #numero-carrito {
+      font-size: 2em; }
+    header .contenedor-Car #texto-carrito {
+      font-size: 2em; }
+  header .cartelPrecioTotal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 2em;
+    text-align: center; }
 
 footer {
   background-color: black;
@@ -76,7 +93,4 @@ footer {
 
 /*VIEWS*/
 main img {
-  width: 250px; }
-
-main .contenedor .display .card {
-  padding: 1.5rem; }
+  width: 200px; }
