@@ -1,12 +1,13 @@
 header {
     background-color: black;
     color: white;
-    gap: 2rem;
+    gap: 4rem;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     text-align: center;
-    position: static;
+
+
 
     .titulo {
         padding: map-get($paddings, large );

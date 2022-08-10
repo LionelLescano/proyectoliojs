@@ -44,12 +44,11 @@ body {
 header {
   background-color: black;
   color: white;
-  gap: 2rem;
+  gap: 4rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  text-align: center;
-  position: static; }
+  text-align: center; }
   header .titulo {
     padding: 1.3rem; }
     header .titulo__pagina a {

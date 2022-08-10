@@ -24,5 +24,8 @@
     "node-sass": "^7.0.1",
     "nodemon": "^2.0.16",
     "sass": "^1.52.3"
+  },
+  "dependencies": {
+    "jquery": "^3.6.0"
   }
 }

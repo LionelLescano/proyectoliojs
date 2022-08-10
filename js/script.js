@@ -26,7 +26,7 @@ const precioTotal = document.getElementById('precioTotal');
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    if(localStorage.getItem('ArrayCarrito')) {
+    if (localStorage.getItem('ArrayCarrito')) {
         ArrayCarrito = JSON.parse(localStorage.getItem('ArrayCarrito'))
         Actualizar()
 
@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
 const Actualizar = () => {
     const textoCarrito = document.getElementById('numero-carrito');
     textoCarrito.innerText = ArrayCarrito.length;
-    precioTotal.innerText=  `${ArrayCarrito.reduce((acc,prod) => acc + prod.precio,0)} $`
-   
+    precioTotal.innerText = `${ArrayCarrito.reduce((acc,prod) => acc + prod.precio,0)} $`
+
 }
 
 function mostrarProductos(arreglo) {
@@ -59,7 +59,6 @@ function mostrarProductos(arreglo) {
              <h4 class="card-title">Precio: $ ${precio}</h4>
              <h5 class ="card-title"> Hasta 3 cuotas sin interes de $${Math.round(precio/3)}</h5> 
              <button id="add${id}" type="button" class="boton-agregar btn btn-outline-primary btn-lg"> Agregar al Carrito </button>
-             <button id="eliminarCarrito" type= "button" class =".botonLimpiar btn btn-outline-primary btn-lg"> Limpiar Carrito </button>
            `
 
         contenedorProductos.appendChild(divProducto);
@@ -67,17 +66,18 @@ function mostrarProductos(arreglo) {
 
         const boton = document.getElementById(`add${id}`)
         boton.addEventListener("click", () => {
-            localStorage.setItem('ArrayCarrito',JSON.stringify(ArrayCarrito))
+            localStorage.setItem('ArrayCarrito', JSON.stringify(ArrayCarrito))
             agregarCarrito(id);
-            Actualizar(); 
+            Actualizar();
             alertaTiempo();
         })
 
         const botonVerCarrito = document.getElementById("btnCarrito");
         botonVerCarrito.addEventListener("click", () => {
+
             mostrarProductos(ArrayCarrito);
             CrearBotonVolver();
-            document.getElementById(`add${id}`).style.display="block"
+
         })
 
         const botonLimpiarCarrito = document.getElementById('eliminarCarrito');
@@ -116,10 +116,17 @@ const alertaTiempo = () => {
 
 }
 
+// const ocultar = () => {
+//     const button = document.querySelectorAll('.boton-agregar');
+//     button.classList.add('d-none');
+// }
+
 
 const eliminarCarrito = (arreglo) => {
     return arreglo.length = 0;
 }
+
+
 
 const consultarCarrito = () => {
     Swal.fire({
@@ -133,8 +140,8 @@ const consultarCarrito = () => {
     }).then((result) => {
         if (result.isConfirmed) {
             eliminarCarrito(ArrayCarrito);
-            Actualizar();
             mostrarProductos(ArrayCarrito);
+            Actualizar();
             CrearBotonVolver();
             localStorage.clear();
             Swal.fire(
@@ -155,6 +162,7 @@ const consultarCarrito = () => {
     })
 
 }
+
 
 
 mostrarProductos(Productos);
